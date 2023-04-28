@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FormActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation = "vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome da Cor:"
+            android:textSize = "30sp"
+            android:textStyle = "bold|italic"/>
+        <EditText
+            android:id="@+id/etNomeForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation = "vertical">
+        <TextView
+            android:id="@+id/tvRedForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor = "@color/red"
+            android:textSize = "22sp"
+            android:textStyle = "bold|italic"/>
+        <SeekBar
+            android:id="@+id/sbRedForm"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:max="255"
+            android:min="0"
+            android:progress="0"
+            android:progressTint="@color/red"
+            android:thumbTint="@color/white"
+            android:background="@color/red"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation = "vertical">
+        <TextView
+            android:id="@+id/tvGreenForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/green"
+            android:textSize="22sp"
+            android:textStyle="bold|italic" />
+        <SeekBar
+            android:id="@+id/sbGreenForm"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:max="255"
+            android:min="0"
+            android:progress="0"
+            android:progressTint="@color/green"
+            android:thumbTint="@color/white"
+            android:background="@color/green"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation = "vertical">
+        <TextView
+            android:id="@+id/tvBlueForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/blue"
+            android:textSize="22sp"
+            android:textStyle="bold|italic" />
+        <SeekBar
+            android:id="@+id/sbBlueForm"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/blue"
+            android:max="255"
+            android:min="0"
+            android:progress="0"
+            android:progressTint="@color/blue"
+            android:thumbTint="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llResultadoForm"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation = "vertical">
+        <TextView
+            android:id="@+id/tvResultadoForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor = "@color/white"
+            android:textSize = "22sp"
+            android:textStyle = "bold|italic"
+            android:background="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation = "horizontal">
+        <Button
+            android:id="@+id/btSalvarForm"
+            android:text="Salvar"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:textSize = "25sp"
+            android:backgroundTint="@color/green"
+            android:textStyle = "bold|italic"
+            android:layout_marginEnd ="20dp"/>
+        <Button
+            android:id="@+id/btVoltarForm"
+            android:text="Voltar"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:textSize = "25sp"
+            android:backgroundTint="@color/red"
+            android:textStyle = "bold|italic"/>
+    </LinearLayout>
+
+</LinearLayout>
