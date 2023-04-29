@@ -4,9 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
-import com.example.myrgb.adapter.CorView
 import com.example.myrgb.cadastro.Cor
 
 class FormActivity : AppCompatActivity() {
@@ -19,12 +17,11 @@ class FormActivity : AppCompatActivity() {
     private lateinit var sbRedForm: SeekBar
     private lateinit var sbGreenForm: SeekBar
     private lateinit var sbBlueForm: SeekBar
-
     private lateinit var sbNomeForm: SeekBar
-
     private lateinit var llResultadoForm: LinearLayout
     private lateinit var btSalvarForm: Button
     private lateinit var btVoltarForm: Button
+
     // Var para a lista de objetos da Tela Main
     private var cores: MutableList<Cor>
 
@@ -50,8 +47,6 @@ class FormActivity : AppCompatActivity() {
         this.btSalvarForm = findViewById(R.id.btSalvarForm)
         this.btVoltarForm = findViewById(R.id.btVoltarForm)
 
-
-
         // Chamar a class MudarCor ao deslizar na Seek Bar
         this.sbRedForm.setOnSeekBarChangeListener(MudarCor())
         this.sbGreenForm.setOnSeekBarChangeListener(MudarCor())
@@ -62,6 +57,18 @@ class FormActivity : AppCompatActivity() {
         this.btSalvarForm.setOnClickListener({salvar()})
         // Botão Voltar da Tela Form para Tela Main
         this.btVoltarForm.setOnClickListener({voltar()})
+
+        // Para preencher o formulário com os dados do objeto que foi clicado na Tela MainActivity
+        if (this.intent.hasExtra("COR")) {
+            // cor = this.intent.getStringExtra("COR") as Cor
+            var cor = this.intent.getSerializableExtra("COR") as Cor
+
+            etNomeForm.setText(cor.nomeCor)
+            tvRedForm.text = cor.r.toString()
+            tvGreenForm.text = cor.g.toString()
+            tvBlueForm.text = cor.b.toString()
+
+        }
     }
 
     // Fum(criarCor) para criar a cor pelo Seek Bar
@@ -85,7 +92,6 @@ class FormActivity : AppCompatActivity() {
             this@FormActivity.tvBlueForm.text = blue.toString()
 
             this@FormActivity.llResultadoForm.setBackgroundColor(this@FormActivity.criarCor())
-            //this@MainActivity.llResultadoForm.setBackgroundColor(Color.rgb(red, green, blue))
 
             fun hexadec(): String {
                 var hexa = "#" + Integer.toHexString(Color.rgb(red, green, blue)).substring(2)
@@ -93,8 +99,6 @@ class FormActivity : AppCompatActivity() {
                 return hexa
             }
             this@FormActivity.tvResultadoForm.text = hexadec()
-
-
         }
 
         // Para o funcionamento da inner class são necessários as fun() abaixo
@@ -106,51 +110,29 @@ class FormActivity : AppCompatActivity() {
         }
     }
 
-
     // Acção ao clicar no botão Salvar da Tela Cadastro
     fun salvar() {
         val nomeCor = this.etNomeForm.text.toString()
         //val codeCor = this.tvResultadoForm.text.toString()
-        val r = this.tvRedForm.text
-        val g = this.tvGreenForm.text
-        val b = this.tvBlueForm.text
+        val r = this.tvRedForm.text.toString().toInt()
+        val g = this.tvGreenForm.text.toString().toInt()
+        val b = this.tvBlueForm.text.toString().toInt()
         val cor = Cor(nomeCor, r, g, b)
         //val cor = Cor(nomeCor, codeCor)
         cores.add(cor)
-
         val intent = Intent().apply {
             putExtra("COR", cor)
-            //putExtras("COR", cores)
         }
         setResult(RESULT_OK, intent)
         this.etNomeForm.text.clear()
-        Log.i("APP_LOG", "Form Cadastro salvo com sucesso")
+        //Log.i("APP_LOG", "Form Cadastro salvo com sucesso")
         //Toast.makeText(this, "Form Cadastro salvo com sucesso", Toast.LENGTH_SHORT).show()
         finish()
     }
 
     // Ação ao clicar no Botão Cancelar da Tela Form, que retorna para Tela Main
     fun voltar() {
-        //val intent = Intent(this, MainActivity::class.java) /*Informa quem vai controlar a transição*/
-        //startActivity(intent) /*Sinaliza para iniciar a transição*/
-        Log.i("APP_LOG", "Form Sair Tela Form")
+        //Log.i("APP_LOG", "Form_Sair Tela Form")
         finish()
-    }
-
-    // *********************Atualizar um objeto
-    inner class AtualizarCorForm(private var cor: Cor?, private var view: CorView) {
-        fun start() {
-            cor?.let {view.displayCor(it)}
-        }
-
-        fun atualizarCor(nomeCor: String, r: Int, g: Int, b: Int) {
-            cor?.let {
-                it.nomeCor = nomeCor
-                it.r = r.toString()
-                it.g = g.toString()
-                it.b = b.toString()
-                view.updateCor(it)
-            }
-        }
     }
 }

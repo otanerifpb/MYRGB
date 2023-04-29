@@ -9,7 +9,7 @@ package com.example.myrgb.cadastro
 //}
 
 // Modelo dos objetos da class com código da cor em RGB
-class Cor(var nomeCor: String, var r: CharSequence, var g: CharSequence, var b: CharSequence): java.io.Serializable {
+class Cor(var nomeCor: String, var r: Int, var g: Int, var b: Int): java.io.Serializable {
 
     override fun toString(): String{
         return "Nome: $nomeCor\n R: $r, G: $g, B: $b "

@@ -1,23 +1,17 @@
 package com.example.myrgb.adapter
 
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-//import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myrgb.R
-import com.example.myrgb.cadastro.Cadastro
 import com.example.myrgb.cadastro.Cor
 import java.util.*
 
 // Class para fazer a adaptação dos objetos e ações na Tela do Main
 class MyAdapter(val lista: MutableList<Cor>): RecyclerView.Adapter<MyAdapter.MyHolder>() {
-//class MyAdapter(val lista: Cor): RecyclerView.Adapter<MyAdapter.MyHolder>() {
 
     // Var para os clicks na Tela
     var onItemClickRecyclerView: OnItemClickRecyclerView? = null
@@ -68,22 +62,6 @@ class MyAdapter(val lista: MutableList<Cor>): RecyclerView.Adapter<MyAdapter.MyH
         Collections.swap(this.lista, from, to)
         notifyItemMoved(from, to)
     }
-
-    // Fun(compartilharAdapter) para compartilhar um objeto ao deslizar para
-//    fun compartilheAdapter(texto: Cor) {
-//        Log.d("APP_LOG", "MyAdapter_Compartilhar Objeto da Tela")
-//        val intent = Intent(Intent.ACTION_SEND).apply {
-//            setType("text/plain")
-//            putExtra(Intent.EXTRA_TEXT, texto.nomeCor)
-//        }
-//
-//        if(intent.resolveActivity(packageManager)!= null) {
-//            startActivity(intent)
-//        }else{
-//            Log.d("APP_LOG", "MyAdapter_Compartilhar cancelado!!")
-//            Toast.makeText(this, "Não é possível Compartilhar", Toast.LENGTH_SHORT).show()
-//        }
-//    }
 
     // Class MyHolde serve para controlar os objetos da Tela para realizar uma ação
     inner class MyHolder (itemView: View): RecyclerView.ViewHolder(itemView){
